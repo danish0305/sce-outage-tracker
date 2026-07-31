@@ -1,0 +1,9 @@
+# Runtime dependency for the scheduled scrapers (sce_oc_outages.py, sce_oc_psps.py).
+# These scripts otherwise use only the Python standard library.
+requests>=2.31
+
+# NOTE: pandas is intentionally NOT listed -- it is not imported by any scraper.
+# NOTE: discover_endpoint.py (a one-off tool used to originally find the SCE API)
+#       also needs `playwright` + `python -m playwright install chromium`. That is
+#       deliberately left out of this file so CI installs stay minimal; install it
+#       manually only if you want to re-run endpoint discovery.

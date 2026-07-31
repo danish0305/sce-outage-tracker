@@ -1,0 +1,20 @@
+# Python
+__pycache__/
+*.py[cod]
+
+# Step 1 endpoint-discovery dumps (large, local-only network captures)
+capture/
+
+# Local run artifacts (not real output)
+_last_*.out
+run_log.txt
+
+# Windows-only local automation with machine-specific absolute paths.
+# GitHub Actions replaces these on Linux (see .github/workflows/scrape.yml).
+run_sce_scrapers*.bat
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

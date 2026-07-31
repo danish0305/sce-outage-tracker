@@ -1,0 +1,57 @@
+name: Scrape SCE outages (LA + OC)
+
+on:
+  schedule:
+    # Every 15 minutes, UTC. GitHub Actions cron is best-effort: runs are often
+    # delayed and can be skipped under load. Scheduled workflows are also paused
+    # after 60 days with no repo activity.
+    - cron: "*/15 * * * *"
+  workflow_dispatch: {}   # allows a manual run from the Actions tab
+
+# Let the default GITHUB_TOKEN push the updated CSVs back.
+permissions:
+  contents: write
+
+# Don't let a slow run overlap the next scheduled one.
+concurrency:
+  group: sce-scrape
+  cancel-in-progress: false
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Scrape outages (active + scheduled)
+        run: |
+          python sce_oc_outages.py --counties "ORANGE,LOS ANGELES" \
+            --out la_oc_outages_latest.csv \
+            --history la_oc_outages_history.csv
+
+      - name: Scrape PSPS
+        run: |
+          python sce_oc_psps.py --counties "ORANGE,LOS ANGELES" \
+            --out la_oc_psps_latest.csv \
+            --history la_oc_psps_history.csv
+
+      - name: Commit updated CSVs
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --staged --quiet; then
+            echo "No data changes this run."
+          else
+            git commit -m "data: update LA+OC outages @ $(date -u +'%Y-%m-%dT%H:%M:%SZ')"
+            git push
+          fi
