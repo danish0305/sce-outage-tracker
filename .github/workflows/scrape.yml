@@ -12,9 +12,11 @@ on:
 permissions:
   contents: write
 
-# Don't let a slow run overlap the next scheduled one.
+# Serialize runs on the same branch so two scrapes can never push at once.
+# cancel-in-progress: false => an overlapping run QUEUES behind the active one
+# (rather than being killed mid-commit), eliminating push races at the source.
 concurrency:
-  group: sce-scrape
+  group: scrape-${{ github.ref }}
   cancel-in-progress: false
 
 jobs:
@@ -23,6 +25,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # full history so the pre-push rebase is reliable
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -46,12 +50,34 @@ jobs:
 
       - name: Commit updated CSVs
         run: |
+          set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
           git add -A
           if git diff --staged --quiet; then
-            echo "No data changes this run."
-          else
-            git commit -m "data: update LA+OC outages @ $(date -u +'%Y-%m-%dT%H:%M:%SZ')"
-            git push
+            echo "No data changes this run — nothing to commit."
+            exit 0
           fi
+          git commit -m "data: update LA+OC outages @ $(date -u +'%Y-%m-%dT%H:%M:%SZ')"
+
+          # Rebase onto the latest remote BEFORE each push, then push. If the remote
+          # advanced between our fetch and push (a race), the push is rejected and we
+          # retry. A genuine rebase conflict (should never happen for append-only CSVs)
+          # fails the job loudly instead of silently dropping data.
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            if ! git rebase origin/main; then
+              echo "::error::Rebase conflict on attempt ${attempt} — aborting to avoid data loss."
+              git rebase --abort || true
+              exit 1
+            fi
+            if git push origin HEAD:main; then
+              echo "Pushed successfully on attempt ${attempt}."
+              exit 0
+            fi
+            echo "Push rejected (remote advanced) on attempt ${attempt}; re-syncing and retrying…"
+            sleep 3
+          done
+          echo "::error::Push still failing after 5 attempts."
+          exit 1
