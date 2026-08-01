@@ -2,10 +2,9 @@ name: Scrape SCE outages (LA + OC)
 
 on:
   schedule:
-    # Every 15 minutes, UTC. GitHub Actions cron is best-effort: runs are often
-    # delayed and can be skipped under load. Scheduled workflows are also paused
-    # after 60 days with no repo activity.
-    - cron: "*/15 * * * *"
+    # Off-peak minutes (:07/:22/:37/:52) to avoid GitHub's top-of-hour load,
+    # which delays or drops scheduled runs. Times are UTC and still best-effort.
+    - cron: "7,22,37,52 * * * *"
   workflow_dispatch: {}   # allows a manual run from the Actions tab
 
 # Let the default GITHUB_TOKEN push the updated CSVs back.
@@ -13,8 +12,6 @@ permissions:
   contents: write
 
 # Serialize runs on the same branch so two scrapes can never push at once.
-# cancel-in-progress: false => an overlapping run QUEUES behind the active one
-# (rather than being killed mid-commit), eliminating push races at the source.
 concurrency:
   group: scrape-${{ github.ref }}
   cancel-in-progress: false
@@ -23,32 +20,60 @@ jobs:
   scrape:
     runs-on: ubuntu-latest
     steps:
+      # --- Auto-stop guard ---------------------------------------------------
+      # GitHub cron has no built-in end date, so we gate the job on a deadline.
+      # Deadline: Monday 2026-08-03 10:00 AM Eastern (EDT, UTC-4) = 14:00:00 UTC.
+      # After that, this step still succeeds (exit 0) but sets expired=true, and
+      # every real step below is skipped via `if:`. The run therefore shows as a
+      # GREEN success with skipped steps -- never a red failure -- after cutoff.
+      - name: Check auto-stop deadline (2026-08-03 10:00 ET = 14:00 UTC)
+        id: deadline
+        run: |
+          DEADLINE_UTC="2026-08-03T14:00:00Z"
+          now=$(date -u +%s)
+          dl=$(date -u -d "$DEADLINE_UTC" +%s)
+          echo "Now (UTC):      $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          echo "Deadline (UTC): $DEADLINE_UTC"
+          if [ "$now" -ge "$dl" ]; then
+            echo "Past deadline — skipping scrape (green success, steps skipped)."
+            echo "expired=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "Before deadline — proceeding with scrape."
+            echo "expired=false" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Checkout
+        if: steps.deadline.outputs.expired != 'true'
         uses: actions/checkout@v4
         with:
           fetch-depth: 0   # full history so the pre-push rebase is reliable
 
       - name: Set up Python
+        if: steps.deadline.outputs.expired != 'true'
         uses: actions/setup-python@v5
         with:
           python-version: "3.12"
 
       - name: Install dependencies
+        if: steps.deadline.outputs.expired != 'true'
         run: pip install -r requirements.txt
 
       - name: Scrape outages (active + scheduled)
+        if: steps.deadline.outputs.expired != 'true'
         run: |
           python sce_oc_outages.py --counties "ORANGE,LOS ANGELES" \
             --out la_oc_outages_latest.csv \
             --history la_oc_outages_history.csv
 
       - name: Scrape PSPS
+        if: steps.deadline.outputs.expired != 'true'
         run: |
           python sce_oc_psps.py --counties "ORANGE,LOS ANGELES" \
             --out la_oc_psps_latest.csv \
             --history la_oc_psps_history.csv
 
       - name: Commit updated CSVs
+        if: steps.deadline.outputs.expired != 'true'
         run: |
           set -euo pipefail
           git config user.name "github-actions[bot]"
