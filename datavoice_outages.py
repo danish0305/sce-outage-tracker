@@ -39,6 +39,15 @@ COLUMNS = [
     "latitude", "longitude", "poly_vertices", "poly_json", "retrieved_utc",
 ]
 
+# Always-on heartbeat schema (mirrors Burbank's summary / Pasadena's envelope history).
+# One row is appended on EVERY run, including quiet ones, so "ran and found nothing" is
+# distinguishable in the data from "did not run / broken". Without this, a quiet DataVoice
+# run leaves no trace at all: the latest CSV becomes header-only and history gets no rows.
+HEARTBEAT_COLUMNS = [
+    "utility", "endpoint_result", "outage_count", "total_customers_out",
+    "http_ok", "retrieved_utc", "retrieved_pacific",
+]
+
 
 class DVError(Exception):
     pass
@@ -172,6 +181,24 @@ def append_history(rows, path):
     return path
 
 
+def append_heartbeat(row, path):
+    """Append one row per run, unconditionally (quiet runs included)."""
+    path = pathlib.Path(path); path.parent.mkdir(parents=True, exist_ok=True)
+    new = not path.exists()
+    with path.open("a", newline="", encoding="utf-8") as f:
+        w = csv.DictWriter(f, fieldnames=HEARTBEAT_COLUMNS)
+        if new: w.writeheader()
+        w.writerow(row)
+    return path
+
+
+def _pacific_now():
+    try:
+        return dt.datetime.now(PACIFIC).strftime("%Y-%m-%d %H:%M:%S %Z") if PACIFIC else ""
+    except Exception:
+        return ""
+
+
 def sanity_report(rows, utility):
     n = len(rows)
     print(f"\n=== {utility.upper()} (DataVoice) SANITY REPORT ===")
@@ -194,27 +221,45 @@ def sanity_report(rows, utility):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--client", required=True, choices=["glendale", "azusa"])
-    ap.add_argument("--out"); ap.add_argument("--history")
+    ap.add_argument("--out"); ap.add_argument("--history"); ap.add_argument("--heartbeat")
     ap.add_argument("--no-history", action="store_true")
     args = ap.parse_args()
 
     here = pathlib.Path(__file__).parent / args.client
     out = args.out or str(here / f"{args.client}_outages_latest.csv")
     hist = args.history or str(here / f"{args.client}_outages_history.csv")
+    hb = args.heartbeat or str(here / f"{args.client}_heartbeat_history.csv")
 
     retrieved = dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
     session = _session()
+    payload, ok, err = None, True, None
     try:
         payload = fetch(session, args.client)
     except DVError as e:
-        print(f"ERROR: {e}", file=sys.stderr); return 2
+        ok, err = False, e
+
+    if not ok:
+        # Still leave a heartbeat so an endpoint failure is visible in the data, not just logs.
+        append_heartbeat({"utility": args.client, "endpoint_result": f"ERROR: {err}",
+                          "outage_count": "", "total_customers_out": "", "http_ok": "false",
+                          "retrieved_utc": retrieved, "retrieved_pacific": _pacific_now()}, hb)
+        print(f"ERROR: {err}", file=sys.stderr)
+        return 2
 
     rows = [parse_marker(m, args.client, retrieved) for m in markers(payload)]
+    total_cust = sum(int(r["consumers_affected"]) for r in rows
+                     if str(r["consumers_affected"]).isdigit())
     print(f"Retrieved {retrieved} | client={args.client} | result={payload.get('result')} | outages={len(rows)}")
     print(f"Wrote {write_csv(rows, out)}")
     if not args.no_history:
         h = append_history(rows, hist)
-        print(f"History: {'appended '+str(len(rows))+' rows to '+str(h) if h else 'no rows (empty run)'}")
+        print(f"History: {'appended '+str(len(rows))+' rows to '+str(h) if h else 'no outage rows (quiet run)'}")
+    # Heartbeat is unconditional -- this is what makes a quiet run provable.
+    p = append_heartbeat({"utility": args.client, "endpoint_result": payload.get("result"),
+                          "outage_count": len(rows), "total_customers_out": total_cust,
+                          "http_ok": "true", "retrieved_utc": retrieved,
+                          "retrieved_pacific": _pacific_now()}, hb)
+    print(f"Heartbeat: appended 1 row to {p}")
     sanity_report(rows, args.client)
     return 0
 
