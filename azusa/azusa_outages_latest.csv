@@ -1,0 +1,1 @@
+utility,incident_id,substation,feeder,consumers_affected,start_local_raw,start_utc,etr_local_raw,etr_utc,duration_raw,duration_minutes,outage_comment,alias,opt_code,latitude,longitude,poly_vertices,poly_json,retrieved_utc

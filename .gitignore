@@ -10,8 +10,8 @@ _last_*.out
 run_log.txt
 
 # Windows-only local automation with machine-specific absolute paths.
-# GitHub Actions replaces these on Linux (see .github/workflows/scrape.yml).
-run_sce_scrapers*.bat
+# GitHub Actions replaces all of these on Linux (see .github/workflows/*.yml).
+*.bat
 
 # OS / editor cruft
 .DS_Store

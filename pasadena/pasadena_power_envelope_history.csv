@@ -1,0 +1,17 @@
+utility,source,outages_count,trucks_count,areas_count,callsummary_present,raw_bytes,retrieved_utc,retrieved_pacific
+pasadena_power,direct_ip,0,0,0,False,58,2026-08-27T17:12:57Z,2026-08-27 10:12:57 PDT
+pasadena_power,direct_ip,0,0,0,False,58,2026-08-27T17:14:58Z,2026-08-27 10:14:58 PDT
+pasadena_power,direct_ip,0,0,0,False,58,2026-08-27T17:29:56Z,2026-08-27 10:29:56 PDT
+pasadena_power,direct_ip,1,0,1,True,906,2026-08-27T17:44:54Z,2026-08-27 10:44:54 PDT
+pasadena_power,direct_ip,1,0,1,True,906,2026-08-27T17:59:54Z,2026-08-27 10:59:54 PDT
+pasadena_power,direct_ip,1,0,1,True,906,2026-08-27T18:14:57Z,2026-08-27 11:14:57 PDT
+pasadena_power,direct_ip,1,0,1,True,906,2026-08-27T18:29:54Z,2026-08-27 11:29:54 PDT
+pasadena_power,direct_ip,0,0,0,False,58,2026-08-27T18:44:56Z,2026-08-27 11:44:56 PDT
+pasadena_power,direct_ip,0,0,0,False,58,2026-08-27T18:59:55Z,2026-08-27 11:59:55 PDT
+pasadena_power,direct_ip,0,0,0,False,58,2026-08-27T23:16:42Z,2026-08-27 16:16:42 PDT
+pasadena_power,direct_ip,0,0,0,False,58,2026-08-27T23:31:30Z,2026-08-27 16:31:30 PDT
+pasadena_power,direct_ip,0,0,0,False,58,2026-08-27T23:46:30Z,2026-08-27 16:46:30 PDT
+pasadena_power,direct_ip,0,0,0,False,58,2026-08-28T00:01:29Z,2026-08-27 17:01:29 PDT
+pasadena_power,direct_ip,0,0,0,False,58,2026-08-28T00:16:29Z,2026-08-27 17:16:29 PDT
+pasadena_power,direct_ip,0,0,0,False,58,2026-08-28T00:17:28Z,2026-08-27 17:17:28 PDT
+pasadena_power,direct_ip,0,0,0,False,58,2026-08-28T00:18:12Z,2026-08-27 17:18:12 PDT

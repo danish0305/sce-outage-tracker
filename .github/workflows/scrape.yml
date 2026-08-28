@@ -22,14 +22,15 @@ jobs:
     steps:
       # --- Auto-stop guard ---------------------------------------------------
       # GitHub cron has no built-in end date, so we gate the job on a deadline.
-      # Deadline: Monday 2026-08-03 10:00 AM Eastern (EDT, UTC-4) = 14:00:00 UTC.
+      # Deadline: Friday 2026-08-28 10:00 AM Eastern (EDT, UTC-4) = 14:00:00 UTC.
+      # (Late August is EDT, so 10:00 local == 14:00Z; literal EST would be 15:00Z.)
       # After that, this step still succeeds (exit 0) but sets expired=true, and
       # every real step below is skipped via `if:`. The run therefore shows as a
       # GREEN success with skipped steps -- never a red failure -- after cutoff.
-      - name: Check auto-stop deadline (2026-08-03 10:00 ET = 14:00 UTC)
+      - name: Check auto-stop deadline (2026-08-28 10:00 EDT = 14:00 UTC)
         id: deadline
         run: |
-          DEADLINE_UTC="2026-08-03T14:00:00Z"
+          DEADLINE_UTC="2026-08-28T14:00:00Z"
           now=$(date -u +%s)
           dl=$(date -u -d "$DEADLINE_UTC" +%s)
           echo "Now (UTC):      $(date -u +%Y-%m-%dT%H:%M:%SZ)"
