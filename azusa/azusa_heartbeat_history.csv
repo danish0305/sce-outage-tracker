@@ -1,3 +1,4 @@
 utility,endpoint_result,outage_count,total_customers_out,http_ok,retrieved_utc,retrieved_pacific
 azusa,true,0,0,true,2026-08-28T15:13:01Z,2026-08-28 08:13:02 PDT
 azusa,true,0,0,true,2026-08-28T15:17:05Z,2026-08-28 08:17:06 PDT
+azusa,true,0,0,true,2026-08-28T21:30:47Z,2026-08-28 14:30:48 PDT
