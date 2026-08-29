@@ -1,9 +1,9 @@
 name: Scrape Burbank outages (watcher)
 
 on:
-  schedule:
-    # Off-peak, staggered minutes (UTC) so no two utility workflows push in the same minute.
-    - cron: "12,27,42,57 * * * *"
+  # Scheduled trigger REMOVED on 2026-08-29: all utilities now run from the single
+  # consolidated workflow scrape-all.yml, so the repo has exactly ONE cron instead of
+  # 8 competing ones. Kept dispatch-only so this utility can still be run on demand.
   workflow_dispatch: {}
 
 permissions:

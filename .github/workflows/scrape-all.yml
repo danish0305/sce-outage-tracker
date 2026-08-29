@@ -1,0 +1,166 @@
+name: Scrape ALL utilities (consolidated)
+
+# ONE scheduled trigger for the whole repo. The 8 per-utility workflows still exist but
+# their `schedule:` triggers were removed -- they are workflow_dispatch-only now -- so
+# GitHub only has a single cron to honour instead of 8 competing ones.
+on:
+  schedule:
+    # Off-peak minutes to avoid GitHub's top-of-hour load. Still best-effort.
+    - cron: "7,22,37,52 * * * *"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: scrape-all-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  scrape-all:
+    runs-on: ubuntu-latest
+    steps:
+      # ---- auto-stop guard (applies to the whole consolidated job) ----------
+      # After the deadline this step still SUCCEEDS (exit 0) but sets expired=true and
+      # every step below is skipped, so post-deadline runs are green with skipped steps.
+      - name: Check auto-stop deadline (2026-09-29 15:00 EDT = 19:00 UTC)
+        id: deadline
+        run: |
+          DEADLINE_UTC="2026-09-29T19:00:00Z"
+          now=$(date -u +%s)
+          dl=$(date -u -d "$DEADLINE_UTC" +%s)
+          echo "Now (UTC):      $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          echo "Deadline (UTC): $DEADLINE_UTC"
+          if [ "$now" -ge "$dl" ]; then
+            echo "Past deadline - skipping all scrapes (green success, steps skipped)."
+            echo "expired=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "Before deadline - proceeding."
+            echo "expired=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Checkout
+        if: steps.deadline.outputs.expired != 'true'
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        if: steps.deadline.outputs.expired != 'true'
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        if: steps.deadline.outputs.expired != 'true'
+        run: pip install -r requirements.txt
+
+      # ---- all 8 utilities in this single triggered run --------------------
+      # continue-on-error so one flaky utility endpoint cannot cost us the other
+      # seven utilities' data for that run; outcomes are summarised below.
+      - name: 1/8 SCE (ArcGIS - outages + PSPS)
+        id: sce
+        if: steps.deadline.outputs.expired != 'true'
+        continue-on-error: true
+        run: |
+          python sce_oc_outages.py --counties "ORANGE,LOS ANGELES" \
+            --out la_oc_outages_latest.csv --history la_oc_outages_history.csv
+          python sce_oc_psps.py --counties "ORANGE,LOS ANGELES" \
+            --out la_oc_psps_latest.csv --history la_oc_psps_history.csv
+
+      - name: 2/8 SDGE (Kubra quadkey walk)
+        id: sdge
+        if: steps.deadline.outputs.expired != 'true'
+        continue-on-error: true
+        run: python sdge/sdge_outages.py
+
+      - name: 3/8 LADWP (LA metro)
+        id: ladwp
+        if: steps.deadline.outputs.expired != 'true'
+        continue-on-error: true
+        run: python ladwp/ladwp_outages.py --region la
+
+      - name: 4/8 Glendale (DataVoice + heartbeat)
+        id: glendale
+        if: steps.deadline.outputs.expired != 'true'
+        continue-on-error: true
+        run: python datavoice_outages.py --client glendale
+
+      - name: 5/8 Azusa (DataVoice + heartbeat)
+        id: azusa
+        if: steps.deadline.outputs.expired != 'true'
+        continue-on-error: true
+        run: python datavoice_outages.py --client azusa
+
+      - name: 6/8 Burbank (POP; summary row always)
+        id: burbank
+        if: steps.deadline.outputs.expired != 'true'
+        continue-on-error: true
+        run: python burbank/burbank_outages.py
+
+      - name: 7/8 Pasadena power (WebOutageViewer; envelope row always)
+        id: pasadena
+        if: steps.deadline.outputs.expired != 'true'
+        continue-on-error: true
+        run: python pasadena/pasadena_power.py
+
+      - name: 8/8 Anaheim (APU; groups premise points by incident_id)
+        id: anaheim
+        if: steps.deadline.outputs.expired != 'true'
+        continue-on-error: true
+        run: python anaheim/anaheim_outages.py
+
+      - name: Per-utility outcome summary
+        if: steps.deadline.outputs.expired != 'true'
+        run: |
+          {
+            echo "| utility | outcome |"
+            echo "|---|---|"
+            echo "| SCE      | ${{ steps.sce.outcome }} |"
+            echo "| SDGE     | ${{ steps.sdge.outcome }} |"
+            echo "| LADWP    | ${{ steps.ladwp.outcome }} |"
+            echo "| Glendale | ${{ steps.glendale.outcome }} |"
+            echo "| Azusa    | ${{ steps.azusa.outcome }} |"
+            echo "| Burbank  | ${{ steps.burbank.outcome }} |"
+            echo "| Pasadena | ${{ steps.pasadena.outcome }} |"
+            echo "| Anaheim  | ${{ steps.anaheim.outcome }} |"
+          } >> "$GITHUB_STEP_SUMMARY"
+          fails=0
+          for o in "${{ steps.sce.outcome }}" "${{ steps.sdge.outcome }}" "${{ steps.ladwp.outcome }}" \
+                   "${{ steps.glendale.outcome }}" "${{ steps.azusa.outcome }}" "${{ steps.burbank.outcome }}" \
+                   "${{ steps.pasadena.outcome }}" "${{ steps.anaheim.outcome }}"; do
+            [ "$o" = "failure" ] && fails=$((fails+1))
+          done
+          echo "utilities failed this run: $fails"
+          [ "$fails" -gt 0 ] && echo "::warning::$fails utility scraper(s) failed; other data still committed"
+          exit 0
+
+      # ---- ONE commit containing all 8 utilities' results -------------------
+      - name: Commit all utilities in a single commit
+        if: steps.deadline.outputs.expired != 'true'
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --staged --quiet; then
+            echo "No data changes this run."
+            exit 0
+          fi
+          git commit -m "data: all utilities @ $(date -u +'%Y-%m-%dT%H:%M:%SZ')"
+          for attempt in 1 2 3 4 5; do
+            git fetch origin "${GITHUB_REF_NAME}"
+            if ! git rebase "origin/${GITHUB_REF_NAME}"; then
+              echo "::error::Rebase conflict on attempt ${attempt} - aborting to avoid data loss."
+              git rebase --abort || true
+              exit 1
+            fi
+            if git push origin "HEAD:${GITHUB_REF_NAME}"; then
+              echo "Pushed successfully on attempt ${attempt}."
+              exit 0
+            fi
+            echo "Push rejected (remote advanced) on attempt ${attempt}; re-syncing..."
+            sleep $((3 + RANDOM % 8))
+          done
+          echo "::error::Push still failing after 5 attempts."
+          exit 1

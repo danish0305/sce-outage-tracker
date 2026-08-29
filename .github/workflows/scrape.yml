@@ -1,11 +1,10 @@
 name: Scrape SCE outages (LA + OC)
 
 on:
-  schedule:
-    # Off-peak minutes (:07/:22/:37/:52) to avoid GitHub's top-of-hour load,
-    # which delays or drops scheduled runs. Times are UTC and still best-effort.
-    - cron: "7,22,37,52 * * * *"
-  workflow_dispatch: {}   # allows a manual run from the Actions tab
+  # Scheduled trigger REMOVED on 2026-08-29: all utilities now run from the single
+  # consolidated workflow scrape-all.yml, so the repo has exactly ONE cron instead of
+  # 8 competing ones. Kept dispatch-only so this utility can still be run on demand.
+  workflow_dispatch: {}
 
 # Let the default GITHUB_TOKEN push the updated CSVs back.
 permissions:
