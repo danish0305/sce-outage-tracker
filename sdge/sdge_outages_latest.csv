@@ -1,2 +1,1 @@
 synthetic_id,circuits,communities,customers_out,cause,cause_detail,crew_status,start_utc,etr_utc,n_out,centroid_lat,centroid_lng,geom_point_encoded,geom_polygon_encoded,inc_id_raw,positional_id_raw,tile_quadkey,deployment_guid,retrieved_utc
-960|2026-08-29T10:50Z,960,Sorrento/ Mira Mesa/ Scripps Ranch,38,Unselected,The cause of the outage is unknown and still under investigation.,,2026-08-29T10:50Z,2026-08-30T02:00:00Z,1,32.92924,-117.143,wn~gEvn~iU,oi~gEfl~iUsDjCsDf@nFsDvB?,,4-0,0230,192e702d-3054-4894-ab0d-c5b54a2c83d5,2026-08-29T23:26:10Z
