@@ -1,2 +1,2 @@
 region,neighborhood,customers_out,status,outage_number,etr_display,etr_utc,latitude,longitude,count_others,objectid_snapshot,retrieved_utc
-LA_METRO,HOLLYWOOD HILLS WEST,25,CREWS WORKING,1,08/30/2026 01:30,2026-08-30T08:30:00Z,34.096349,-118.392011,,236938,2026-08-30T13:14:58Z
+LA_METRO,LEIMERT PARK,7,CREWS WORKING,1,08/30/2026 13:30,2026-08-30T20:30:00Z,34.012764,-118.328535,,236953,2026-08-30T17:36:13Z
