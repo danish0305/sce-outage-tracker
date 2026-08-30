@@ -1,1 +1,2 @@
 synthetic_id,circuits,communities,customers_out,cause,cause_detail,crew_status,start_utc,etr_utc,n_out,centroid_lat,centroid_lng,geom_point_encoded,geom_polygon_encoded,inc_id_raw,positional_id_raw,tile_quadkey,deployment_guid,retrieved_utc
+305|2026-08-30T08:50Z,305,NW Rancho Santa Fe/ San Elijo Lagoon,1,Device/Equipment Damaged,Our equipment has been damaged and our crews need to make repairs.,,2026-08-30T08:50Z,2026-08-30T13:30:00Z,1,33.01979,-117.2087,udphEjikjU,,,4-0,0230,e0184a77-4b1c-40e4-b998-d04374ff254c,2026-08-30T13:14:57Z
