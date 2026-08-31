@@ -1,2 +1,2 @@
 region,neighborhood,customers_out,status,outage_number,etr_display,etr_utc,latitude,longitude,count_others,objectid_snapshot,retrieved_utc
-LA_METRO,WESTLAKE,9,CREWS WORKING,1,,,34.072291,-118.275662,,237132,2026-08-31T06:57:56Z
+LA_METRO,WESTLAKE,75,CREWS WORKING,1,08/31/2026 10:00,2026-08-31T17:00:00Z,34.058951,-118.26469900000001,,237158,2026-08-31T15:02:15Z
