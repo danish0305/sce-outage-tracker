@@ -1,1 +1,2 @@
 synthetic_id,circuits,communities,customers_out,cause,cause_detail,crew_status,start_utc,etr_utc,n_out,centroid_lat,centroid_lng,geom_point_encoded,geom_polygon_encoded,inc_id_raw,positional_id_raw,tile_quadkey,deployment_guid,retrieved_utc
+470|2026-08-30T22:23Z,470,N San Pasqual,3,Device/Equipment Damaged,Our equipment has been damaged and our crews need to make repairs.,,2026-08-30T22:23Z,2026-08-31T07:00:00Z,1,33.089,-117.0303,gu}hEjnhiU,,,4-0,0230,34b8bc5a-7d78-4ae9-b6f3-ab32776b5a20,2026-08-31T00:55:37Z
