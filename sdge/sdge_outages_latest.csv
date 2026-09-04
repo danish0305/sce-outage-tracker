@@ -1,2 +1,2 @@
 synthetic_id,circuits,communities,customers_out,cause,cause_detail,crew_status,start_utc,etr_utc,n_out,centroid_lat,centroid_lng,geom_point_encoded,geom_polygon_encoded,inc_id_raw,positional_id_raw,tile_quadkey,deployment_guid,retrieved_utc
-255|2026-09-04T17:36Z,255,W Chula Vista,7,Undetermined,The cause of the outage is unknown and still under investigation.,,2026-09-04T17:36Z,2026-09-04T22:30:00Z,1,32.63505,-117.09125,a`efEhktiU,,,4-0,0230,76ca64e5-d39d-4096-8698-884d6f930499,2026-09-04T20:51:31Z
+255|2026-09-04T17:36Z,255,W Chula Vista,7,Device/Equipment Damaged,Our equipment has been damaged and our crews need to make repairs.,,2026-09-04T17:36Z,2026-09-05T05:30:00Z,1,32.63505,-117.09125,a`efEhktiU,,,4-0,0230,fe39b36a-c69f-4561-9da3-f5f8f8651e2d,2026-09-04T22:36:58Z
