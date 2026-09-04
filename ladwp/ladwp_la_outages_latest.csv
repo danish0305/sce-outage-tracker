@@ -1,1 +1,2 @@
 region,neighborhood,customers_out,status,outage_number,etr_display,etr_utc,latitude,longitude,count_others,objectid_snapshot,retrieved_utc
+LA_METRO,GRANADA HILLS,0,CREWS WORKING,1,09/04/2026 07:30,2026-09-04T14:30:00Z,34.31104,-118.504741,,237836,2026-09-04T11:09:31Z
