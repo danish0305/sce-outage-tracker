@@ -1,2 +1,2 @@
 utility,incident_id,type,affected_points,start_local_raw,start_utc,etr_local_raw,etr_utc,centroid_lat,centroid_lng,bbox_lat_min,bbox_lng_min,bbox_lat_max,bbox_lng_max,retrieved_utc
-anaheim,292906,Current Electric Outage,33,9/4/2026 8:09 AM,2026-09-04T15:09:00Z,9/4/2026 12:00 PM,2026-09-04T19:00:00Z,33.804901,-117.950645,33.8035505985,-117.951053509,33.8062187985,-117.950255194,2026-09-04T18:19:25Z
+anaheim,292918,Current Electric Outage,99,9/4/2026 12:15 PM,2026-09-04T19:15:00Z,9/4/2026 3:30 PM,2026-09-04T22:30:00Z,33.806916,-117.945768,33.8048831392,-117.949793011,33.8582791487,-117.797350142,2026-09-04T20:51:34Z
