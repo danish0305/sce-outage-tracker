@@ -1,1 +1,3 @@
 region,neighborhood,customers_out,status,outage_number,etr_display,etr_utc,latitude,longitude,count_others,objectid_snapshot,retrieved_utc
+LA_METRO,ELYSIAN PARK,16,ASSIGNED,1,09/05/2026 15:30,2026-09-05T22:30:00Z,34.076558,-118.232962,,237936,2026-09-05T21:40:51Z
+LA_METRO,EL SERENO,462,ASSIGNED,1,09/05/2026 16:00,2026-09-05T23:00:00Z,34.062478999999996,-118.185052,,237937,2026-09-05T21:40:51Z
