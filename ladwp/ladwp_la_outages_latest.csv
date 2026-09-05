@@ -1,1 +1,2 @@
 region,neighborhood,customers_out,status,outage_number,etr_display,etr_utc,latitude,longitude,count_others,objectid_snapshot,retrieved_utc
+LA_METRO,NORTH HOLLYWOOD,310,REPORTED OUTAGE,1,09/04/2026 21:30,2026-09-05T04:30:00Z,34.161642,-118.375511,,237869,2026-09-05T00:22:49Z
