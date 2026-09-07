@@ -1,2 +1,1 @@
 synthetic_id,circuits,communities,customers_out,cause,cause_detail,crew_status,start_utc,etr_utc,n_out,centroid_lat,centroid_lng,geom_point_encoded,geom_polygon_encoded,inc_id_raw,positional_id_raw,tile_quadkey,deployment_guid,retrieved_utc
-380|2026-09-06T18:23:11Z,380,Grantville/ Allied Gardens/ Del Cerro,41,Device/Equipment Damaged,Our equipment has been damaged and our crews need to make repairs.,,2026-09-06T18:23:11Z,2026-09-07T02:00:00Z,1,32.78966,-117.07126,kfcgEjnpiU,wdcgEbvpiUg@sDoA{JvBnP,,4-0,0230,7427af91-c6fd-4ee7-b3bf-c93dfe02ce8b,2026-09-07T00:18:07Z
