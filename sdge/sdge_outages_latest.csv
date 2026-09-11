@@ -1,1 +1,2 @@
 synthetic_id,circuits,communities,customers_out,cause,cause_detail,crew_status,start_utc,etr_utc,n_out,centroid_lat,centroid_lng,geom_point_encoded,geom_polygon_encoded,inc_id_raw,positional_id_raw,tile_quadkey,deployment_guid,retrieved_utc
+192|2026-09-11T18:35:24Z,192,Oceanside/ San Luis Rey/ Ocean Hills,6,Vehicle Contact,A vehicle has come into contact with our electric system and our crews are currently on scene making repairs.,,2026-09-11T18:35:24Z,2026-09-12T00:30:00Z,1,33.18849,-117.3289,acqiErxbkU,,,4-0,0230,4b4aaa3d-9fb7-45f1-8930-5790af32814d,2026-09-11T20:53:33Z
