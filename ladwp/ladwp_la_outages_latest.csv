@@ -1,1 +1,3 @@
 region,neighborhood,customers_out,status,outage_number,etr_display,etr_utc,latitude,longitude,count_others,objectid_snapshot,retrieved_utc
+LA_METRO,VERMONT-SLAUSON,0,REPORTED OUTAGE,1,09/12/2026 15:30,2026-09-12T22:30:00Z,33.981873,-118.282085,,249787,2026-09-12T21:01:50Z
+LA_METRO,JEFFERSON PARK,38,ASSIGNED,1,09/12/2026 15:30,2026-09-12T22:30:00Z,34.033305,-118.330214,,249788,2026-09-12T21:01:50Z
