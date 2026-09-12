@@ -1,1 +1,2 @@
 region,neighborhood,customers_out,status,outage_number,etr_display,etr_utc,latitude,longitude,count_others,objectid_snapshot,retrieved_utc
+LA_METRO,WATTS,5,CREWS WORKING,1,09/12/2026 11:00,2026-09-12T18:00:00Z,33.952408,-118.23852099999999,,249784,2026-09-12T16:33:38Z
