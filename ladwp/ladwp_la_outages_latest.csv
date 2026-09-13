@@ -1,2 +1,1 @@
 region,neighborhood,customers_out,status,outage_number,etr_display,etr_utc,latitude,longitude,count_others,objectid_snapshot,retrieved_utc
-LA_METRO,HARBOR CITY,140,EN ROUTE,1,09/13/2026 15:30,2026-09-13T22:30:00Z,33.780938,-118.301221,,249945,2026-09-13T18:09:31Z
