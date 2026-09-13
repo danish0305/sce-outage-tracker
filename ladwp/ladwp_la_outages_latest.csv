@@ -1,1 +1,3 @@
 region,neighborhood,customers_out,status,outage_number,etr_display,etr_utc,latitude,longitude,count_others,objectid_snapshot,retrieved_utc
+LA_METRO,WESTWOOD,31,CREWS WORKING,1,09/12/2026 17:30,2026-09-13T00:30:00Z,34.064989,-118.425731,,249805,2026-09-13T00:53:45Z
+LA_METRO,KOREATOWN,46,ASSIGNED,1,09/12/2026 19:30,2026-09-13T02:30:00Z,34.072414,-118.311957,,249806,2026-09-13T00:53:45Z
