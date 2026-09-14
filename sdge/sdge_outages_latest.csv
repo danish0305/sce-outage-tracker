@@ -1,1 +1,2 @@
 synthetic_id,circuits,communities,customers_out,cause,cause_detail,crew_status,start_utc,etr_utc,n_out,centroid_lat,centroid_lng,geom_point_encoded,geom_polygon_encoded,inc_id_raw,positional_id_raw,tile_quadkey,deployment_guid,retrieved_utc
+748|2026-09-13T15:56Z,748,Torrey Pines/ Sorrento Valley/ University City,7,Device/Equipment Damaged,Our equipment has been damaged and our crews need to make repairs.,,2026-09-13T15:56Z,2026-09-14T03:00:00Z,1,32.89026,-117.21025,c{vgE`skjU,oyvgEfpkjUoArDSSpA_DP?,,4-0,0230,214c0a76-3192-4283-ac38-0e4f884e8c57,2026-09-14T01:00:23Z
