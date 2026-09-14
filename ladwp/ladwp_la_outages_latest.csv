@@ -1,3 +1,1 @@
 region,neighborhood,customers_out,status,outage_number,etr_display,etr_utc,latitude,longitude,count_others,objectid_snapshot,retrieved_utc
-LA_METRO,CANOGA PARK,25,EN ROUTE,1,09/14/2026 13:30,2026-09-14T20:30:00Z,34.201549,-118.599674,,250043,2026-09-14T18:33:16Z
-LA_METRO,CYPRESS PARK,21,CREWS WORKING,1,09/14/2026 12:00,2026-09-14T19:00:00Z,34.099413,-118.231275,,250044,2026-09-14T18:33:16Z
