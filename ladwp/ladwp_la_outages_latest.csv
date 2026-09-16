@@ -1,1 +1,3 @@
 region,neighborhood,customers_out,status,outage_number,etr_display,etr_utc,latitude,longitude,count_others,objectid_snapshot,retrieved_utc
+LA_METRO,ECHO PARK,79,ASSIGNED,1,09/15/2026 18:00,2026-09-16T01:00:00Z,34.068517,-118.254567,,250209,2026-09-16T00:29:25Z
+LA_METRO,GRANADA HILLS,0,ASSIGNED,1,09/15/2026 20:00,2026-09-16T03:00:00Z,34.283091,-118.473103,,250210,2026-09-16T00:29:25Z
