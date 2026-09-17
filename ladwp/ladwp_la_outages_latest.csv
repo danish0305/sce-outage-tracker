@@ -1,2 +1,2 @@
 region,neighborhood,customers_out,status,outage_number,etr_display,etr_utc,latitude,longitude,count_others,objectid_snapshot,retrieved_utc
-LA_METRO,WESTWOOD,1,ASSIGNED,1,09/17/2026 03:00,2026-09-17T10:00:00Z,34.062965,-118.443543,,250382,2026-09-17T09:41:12Z
+LA_METRO,BRENTWOOD,41,ASSIGNED,1,09/17/2026 08:00,2026-09-17T15:00:00Z,34.049095,-118.46951899999999,,250407,2026-09-17T14:28:45Z
