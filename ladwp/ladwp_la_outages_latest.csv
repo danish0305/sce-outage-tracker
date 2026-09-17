@@ -1,1 +1,2 @@
 region,neighborhood,customers_out,status,outage_number,etr_display,etr_utc,latitude,longitude,count_others,objectid_snapshot,retrieved_utc
+LA_METRO,DOWNTOWN,0,ASSIGNED,1,09/17/2026 18:30,2026-09-18T01:30:00Z,34.049054,-118.256328,,250431,2026-09-17T23:45:03Z
