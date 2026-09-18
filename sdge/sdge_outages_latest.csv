@@ -1,2 +1,1 @@
 synthetic_id,circuits,communities,customers_out,cause,cause_detail,crew_status,start_utc,etr_utc,n_out,centroid_lat,centroid_lng,geom_point_encoded,geom_polygon_encoded,inc_id_raw,positional_id_raw,tile_quadkey,deployment_guid,retrieved_utc
-199|2026-09-18T07:31:57Z,199,Oceanside/ San Luis Rey/ Ocean Hills,125,,The cause of the outage is unknown and still under investigation.,,2026-09-18T07:31:57Z,2026-09-18T12:30:00Z,1,33.20776,-117.33982,o{tiEz|dkU,sntiEn`ekUg@rDqNfEeB_DsD_XjC?vGnAfJnFf@bG,,4-0,0230,2022ca4c-05b5-4ecd-853d-c0d35ac7e85d,2026-09-18T11:53:42Z
