@@ -1,1 +1,3 @@
 region,neighborhood,customers_out,status,outage_number,etr_display,etr_utc,latitude,longitude,count_others,objectid_snapshot,retrieved_utc
+LA_METRO,HIGHLAND PARK,54,ASSIGNED,1,,,34.10656,-118.202448,,250584,2026-09-18T19:04:40Z
+LA_METRO,EAST HOLLYWOOD,91,ASSIGNED,1,09/18/2026 13:30,2026-09-18T20:30:00Z,34.087198,-118.286832,,250585,2026-09-18T19:04:40Z
