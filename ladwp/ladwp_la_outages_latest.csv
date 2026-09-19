@@ -1,3 +1,1 @@
 region,neighborhood,customers_out,status,outage_number,etr_display,etr_utc,latitude,longitude,count_others,objectid_snapshot,retrieved_utc
-LA_METRO,VERMONT KNOLLS,2598,CREWS WORKING,1,09/19/2026 04:30,2026-09-19T11:30:00Z,33.968675,-118.282951,,250675,2026-09-19T11:37:43Z
-LA_METRO,BEL-AIR,109,ASSIGNED,1,09/19/2026 12:00,2026-09-19T19:00:00Z,34.099537,-118.446226,,250676,2026-09-19T11:37:43Z
