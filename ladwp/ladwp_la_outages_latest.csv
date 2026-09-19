@@ -1,2 +1,2 @@
 region,neighborhood,customers_out,status,outage_number,etr_display,etr_utc,latitude,longitude,count_others,objectid_snapshot,retrieved_utc
-LA_METRO,RANCHO PARK,1382,ASSIGNED,1,09/19/2026 18:00,2026-09-20T01:00:00Z,34.02792,-118.428027,,250686,2026-09-19T19:33:57Z
+LA_METRO,RANCHO PARK,1389,CREWS WORKING,1,09/19/2026 18:00,2026-09-20T01:00:00Z,34.02792,-118.428027,,250695,2026-09-19T21:42:56Z
