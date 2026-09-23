@@ -1,2 +1,1 @@
 utility,incident_id,substation,feeder,consumers_affected,start_local_raw,start_utc,etr_local_raw,etr_utc,duration_raw,duration_minutes,outage_comment,alias,opt_code,latitude,longitude,poly_vertices,poly_json,retrieved_utc
-glendale,G173685,0,0,4,09/22 10:28 am,2026-09-22T17:28:00Z,,,05 hr 25 min,325,Flickering Lights ,,Other (see comments),34.14530424770178,-118.26235178116953,1,"[{""lon"": ""-118.26235178116953"", ""lat"": ""34.14530424770178""}]",2026-09-22T22:54:06Z
