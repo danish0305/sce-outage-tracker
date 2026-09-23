@@ -1,1 +1,2 @@
 region,neighborhood,customers_out,status,outage_number,etr_display,etr_utc,latitude,longitude,count_others,objectid_snapshot,retrieved_utc
+LA_METRO,FAIRFAX,301,ASSIGNED,1,09/23/2026 11:00,2026-09-23T18:00:00Z,34.069328999999996,-118.346481,,251363,2026-09-23T12:06:57Z
