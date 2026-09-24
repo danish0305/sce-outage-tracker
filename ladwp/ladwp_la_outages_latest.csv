@@ -1,3 +1,1 @@
 region,neighborhood,customers_out,status,outage_number,etr_display,etr_utc,latitude,longitude,count_others,objectid_snapshot,retrieved_utc
-LA_METRO,HISTORIC SOUTH-CENTRAL,40,ASSIGNED,1,09/24/2026 13:30,2026-09-24T20:30:00Z,34.023134,-118.261934,,251532,2026-09-24T17:03:33Z
-LA_METRO,WEST HILLS,9,CREWS WORKING,1,09/24/2026 11:30,2026-09-24T18:30:00Z,34.192133999999996,-118.62787,,251533,2026-09-24T17:03:33Z
