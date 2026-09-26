@@ -1,1 +1,2 @@
 region,neighborhood,customers_out,status,outage_number,etr_display,etr_utc,latitude,longitude,count_others,objectid_snapshot,retrieved_utc
+LA_METRO,CANOGA PARK,0,EN ROUTE,1,09/26/2026 15:30,2026-09-26T22:30:00Z,34.189558999999996,-118.592429,,251817,2026-09-26T19:27:53Z
