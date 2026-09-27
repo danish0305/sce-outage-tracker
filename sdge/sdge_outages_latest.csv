@@ -1,1 +1,2 @@
 synthetic_id,circuits,communities,customers_out,cause,cause_detail,crew_status,start_utc,etr_utc,n_out,centroid_lat,centroid_lng,geom_point_encoded,geom_polygon_encoded,inc_id_raw,positional_id_raw,tile_quadkey,deployment_guid,retrieved_utc
+CD4|2026-09-27T05:12:06Z,CD4,Carlsbad/ La Costa,377,,The cause of the outage is unknown and still under investigation.,,2026-09-27T05:12:06Z,2026-09-27T08:00:00Z,1,33.16361,-117.33879,qgliElvdkU,{mkiEfsekU{EnK{m@sb@nAwe@rDg@n_@~HhJ~Mx@be@,,4-0,0230,b31bdf94-5455-4c10-b01d-78cdbac7eddc,2026-09-27T05:52:15Z
