@@ -1,2 +1,2 @@
 region,neighborhood,customers_out,status,outage_number,etr_display,etr_utc,latitude,longitude,count_others,objectid_snapshot,retrieved_utc
-LA_METRO,FLORENCE,0,ASSIGNED,1,09/28/2026 14:30,2026-09-28T21:30:00Z,33.978977,-118.260448,,252040,2026-09-28T14:34:54Z
+LA_METRO,NORTH HOLLYWOOD,1,CREWS WORKING,1,09/28/2026 17:30,2026-09-29T00:30:00Z,34.194463999999996,-118.390913,,252065,2026-09-28T20:46:08Z
