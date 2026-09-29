@@ -1,1 +1,2 @@
 synthetic_id,circuits,communities,customers_out,cause,cause_detail,crew_status,start_utc,etr_utc,n_out,centroid_lat,centroid_lng,geom_point_encoded,geom_polygon_encoded,inc_id_raw,positional_id_raw,tile_quadkey,deployment_guid,retrieved_utc
+831|2026-09-29T11:40Z,831,North City West/ Torrey Pines/ Fairbanks Country Club,217,,The cause of the outage is unknown and still under investigation.,,2026-09-29T11:40Z,2026-09-29T17:00:00Z,1,32.95341,-117.21891,yechEdimjU,oubhEzlmjUcBfEk\zEoAkCrIgYbB{@lRRx@vQ,,4-0,0230,e2d5c8ce-98e9-4a02-98b4-7ea19d8a0720,2026-09-29T13:06:37Z
