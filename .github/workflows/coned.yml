@@ -1,0 +1,90 @@
+name: Scrape ConEd outages
+
+on:
+  schedule:
+    # Off-peak, and offset from scrape-all.yml (7,22,37,52) so the two never push in the
+    # same minute. Times are UTC and best-effort.
+    - cron: "3,18,33,48 * * * *"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: scrape-coned-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    steps:
+      # ---- auto-stop guard -------------------------------------------------
+      # After the deadline this step still SUCCEEDS but sets expired=true and every step
+      # below is skipped, so post-deadline runs are green with skipped steps.
+      - name: Check auto-stop deadline (2026-12-31 15:00 EST = 20:00 UTC)
+        id: deadline
+        run: |
+          DEADLINE_UTC="2026-12-31T20:00:00Z"
+          now=$(date -u +%s)
+          dl=$(date -u -d "$DEADLINE_UTC" +%s)
+          echo "Now (UTC):      $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          echo "Deadline (UTC): $DEADLINE_UTC"
+          if [ "$now" -ge "$dl" ]; then
+            echo "Past deadline - skipping scrape (green success, steps skipped)."
+            echo "expired=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "Before deadline - proceeding."
+            echo "expired=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Checkout
+        if: steps.deadline.outputs.expired != 'true'
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        if: steps.deadline.outputs.expired != 'true'
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        if: steps.deadline.outputs.expired != 'true'
+        run: pip install -r requirements.txt
+
+      # Full z12 tile scan + data.json cross-check + heartbeat row. Never touches the
+      # premises layer (customer addresses). Exits 0 on a count mismatch but logs it to
+      # coned_heartbeat_history.csv and emits a ::warning:: so it is visible in the run.
+      - name: Scrape ConEd (legacy StormCenter, full tile scan)
+        if: steps.deadline.outputs.expired != 'true'
+        run: python coned/coned_outages.py
+
+      - name: Commit updated CSVs
+        if: steps.deadline.outputs.expired != 'true'
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add coned/
+          if git diff --staged --quiet; then
+            echo "No data changes this run."
+            exit 0
+          fi
+          git commit -m "data: coned outages @ $(date -u +'%Y-%m-%dT%H:%M:%SZ')"
+          for attempt in 1 2 3 4 5; do
+            git fetch origin "${GITHUB_REF_NAME}"
+            if ! git rebase "origin/${GITHUB_REF_NAME}"; then
+              echo "::error::Rebase conflict on attempt ${attempt} - aborting to avoid data loss."
+              git rebase --abort || true
+              exit 1
+            fi
+            if git push origin "HEAD:${GITHUB_REF_NAME}"; then
+              echo "Pushed successfully on attempt ${attempt}."
+              exit 0
+            fi
+            echo "Push rejected (remote advanced) on attempt ${attempt}; re-syncing..."
+            sleep $((3 + RANDOM % 8))
+          done
+          echo "::error::Push still failing after 5 attempts."
+          exit 1
