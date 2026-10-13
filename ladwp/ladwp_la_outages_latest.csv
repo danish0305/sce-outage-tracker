@@ -1,1 +1,3 @@
 region,neighborhood,customers_out,status,outage_number,etr_display,etr_utc,latitude,longitude,count_others,objectid_snapshot,retrieved_utc
+LA_METRO,CHESTERFIELD SQUARE,1,ASSIGNED,1,,,33.985025,-118.311771,,262297,2026-10-13T20:37:01Z
+LA_METRO,SUN VALLEY,466,CREWS WORKING,1,10/13/2026 16:30,2026-10-13T23:30:00Z,34.206824999999995,-118.349778,,262298,2026-10-13T20:37:01Z
