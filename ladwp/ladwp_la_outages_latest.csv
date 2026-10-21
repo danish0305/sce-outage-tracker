@@ -1,2 +1,2 @@
 region,neighborhood,customers_out,status,outage_number,etr_display,etr_utc,latitude,longitude,count_others,objectid_snapshot,retrieved_utc
-LA_METRO,NORTHRIDGE,40,CREWS WORKING,1,10/20/2026 15:30,2026-10-20T22:30:00Z,34.252572,-118.520918,,264060,2026-10-20T21:32:45Z
+LA_METRO,KOREATOWN,109,ASSIGNED,1,10/20/2026 18:30,2026-10-21T01:30:00Z,34.073796,-118.297167,,264070,2026-10-21T00:06:07Z
