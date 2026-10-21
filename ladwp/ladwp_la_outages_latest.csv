@@ -1,1 +1,2 @@
 region,neighborhood,customers_out,status,outage_number,etr_display,etr_utc,latitude,longitude,count_others,objectid_snapshot,retrieved_utc
+LA_METRO,CENTRAL-ALAMEDA,0,EN ROUTE,1,10/21/2026 02:00,2026-10-21T09:00:00Z,33.99343,-118.238553,,264122,2026-10-21T09:42:08Z
