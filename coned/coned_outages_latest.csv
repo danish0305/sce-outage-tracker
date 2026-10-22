@@ -1,1 +1,3 @@
 utility,synthetic_id_location,publish_id_UNSTABLE,latitude,longitude,customers_out,reported_problem,cause,crew_status_code,etr_status,etr_utc,etr_raw,first_seen_utc,first_seen_method,minutes_since_first_seen,has_polygon,polygon_vertices,polygon_json,found_at_zoom,directory,publish_utc,retrieved_utc
+coned,40.74903|-73.90387,1,40.74903,-73.90387,1,Partial Outage,Not Supplied,NEW,ETR-NULL,,ETR-NULL,2026-10-22T09:52:43Z,new,0,False,0,,12,2026_10_22_09_50_30,2026-10-22T09:50:00Z,2026-10-22T09:52:43Z
+coned,40.71221|-73.87141,2,40.71221,-73.87141,1,Partial Outage,Not Supplied,DSP,ESTIMATED,2026-10-22T12:00:00Z,2026-10-22T08:00:00-0400,2026-10-22T09:52:43Z,new,0,False,0,,12,2026_10_22_09_50_30,2026-10-22T09:50:00Z,2026-10-22T09:52:43Z
