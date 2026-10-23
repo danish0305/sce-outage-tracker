@@ -1,2 +1,1 @@
 region,neighborhood,customers_out,status,outage_number,etr_display,etr_utc,latitude,longitude,count_others,objectid_snapshot,retrieved_utc
-LA_METRO,VENICE,18,ASSIGNED,1,10/23/2026 16:30,2026-10-23T23:30:00Z,33.987134999999995,-118.472376,,264563,2026-10-23T19:55:39Z
