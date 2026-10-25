@@ -1,2 +1,1 @@
 region,neighborhood,customers_out,status,outage_number,etr_display,etr_utc,latitude,longitude,count_others,objectid_snapshot,retrieved_utc
-LA_METRO,MAR VISTA,108,CREWS WORKING,1,10/25/2026 10:00,2026-10-25T17:00:00Z,33.999576999999995,-118.426409,,264661,2026-10-25T17:36:50Z
