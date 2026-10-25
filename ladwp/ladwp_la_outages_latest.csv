@@ -1,1 +1,2 @@
 region,neighborhood,customers_out,status,outage_number,etr_display,etr_utc,latitude,longitude,count_others,objectid_snapshot,retrieved_utc
+LA_METRO,HANCOCK PARK,0,ASSIGNED,1,10/25/2026 14:00,2026-10-25T21:00:00Z,34.081182,-118.333259,,264663,2026-10-25T22:29:34Z
