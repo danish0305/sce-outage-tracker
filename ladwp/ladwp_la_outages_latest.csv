@@ -1,1 +1,2 @@
 region,neighborhood,customers_out,status,outage_number,etr_display,etr_utc,latitude,longitude,count_others,objectid_snapshot,retrieved_utc
+LA_METRO,TOLUCA LAKE,0,CREWS WORKING,1,10/26/2026 14:00,2026-10-26T21:00:00Z,34.157036,-118.361973,,264699,2026-10-26T17:37:23Z
