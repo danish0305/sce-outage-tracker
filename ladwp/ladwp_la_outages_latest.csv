@@ -1,1 +1,2 @@
 region,neighborhood,customers_out,status,outage_number,etr_display,etr_utc,latitude,longitude,count_others,objectid_snapshot,retrieved_utc
+LA_METRO,LOS FELIZ,93,ASSIGNED,1,10/28/2026 11:00,2026-10-28T18:00:00Z,34.108720999999996,-118.292484,,264849,2026-10-28T14:27:23Z
