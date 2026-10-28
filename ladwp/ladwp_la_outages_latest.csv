@@ -1,2 +1,1 @@
 region,neighborhood,customers_out,status,outage_number,etr_display,etr_utc,latitude,longitude,count_others,objectid_snapshot,retrieved_utc
-LA_METRO,HISTORIC SOUTH-CENTRAL,1,CREWS WORKING,1,10/27/2026 14:30,2026-10-27T21:30:00Z,34.032956,-118.274115,,264837,2026-10-28T01:38:32Z
