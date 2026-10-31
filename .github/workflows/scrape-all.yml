@@ -5,7 +5,7 @@ name: Scrape ALL utilities (consolidated)
 # GitHub only has a single cron to honour instead of 8 competing ones.
 on:
   # Scheduled trigger PAUSED on 2026-10-31: collection moved to a local Windows Task
-  # Scheduler job (run_all_local.ps1) so GitHub no longer writes the same CSVs.
+  # Scheduler job (run_all_local.py) so GitHub no longer writes the same CSVs.
   # To resume GitHub collection, uncomment the two lines below.
   # schedule:
   #   # Off-peak minutes to avoid GitHub's top-of-hour load. Still best-effort.
