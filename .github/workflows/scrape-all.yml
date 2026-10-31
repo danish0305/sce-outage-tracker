@@ -4,9 +4,12 @@ name: Scrape ALL utilities (consolidated)
 # their `schedule:` triggers were removed -- they are workflow_dispatch-only now -- so
 # GitHub only has a single cron to honour instead of 8 competing ones.
 on:
-  schedule:
-    # Off-peak minutes to avoid GitHub's top-of-hour load. Still best-effort.
-    - cron: "7,22,37,52 * * * *"
+  # Scheduled trigger PAUSED on 2026-10-31: collection moved to a local Windows Task
+  # Scheduler job (run_all_local.ps1) so GitHub no longer writes the same CSVs.
+  # To resume GitHub collection, uncomment the two lines below.
+  # schedule:
+  #   # Off-peak minutes to avoid GitHub's top-of-hour load. Still best-effort.
+  #   - cron: "7,22,37,52 * * * *"
   workflow_dispatch: {}
 
 permissions:
