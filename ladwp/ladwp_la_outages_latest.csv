@@ -1,1 +1,2 @@
 region,neighborhood,customers_out,status,outage_number,etr_display,etr_utc,latitude,longitude,count_others,objectid_snapshot,retrieved_utc
+LA_METRO,HOLLYWOOD HILLS,1,ASSIGNED,1,10/31/2026 12:00,2026-10-31T19:00:00Z,34.136479,-118.341444,,265281,2026-10-31T18:53:43Z
