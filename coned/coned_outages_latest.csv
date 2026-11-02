@@ -1,3 +1,1 @@
 utility,synthetic_id_location,publish_id_UNSTABLE,latitude,longitude,customers_out,reported_problem,cause,crew_status_code,etr_status,etr_utc,etr_raw,first_seen_utc,first_seen_method,minutes_since_first_seen,has_polygon,polygon_vertices,polygon_json,found_at_zoom,directory,publish_utc,retrieved_utc
-coned,40.89210|-73.85563,2,40.8921,-73.85563,1,No Lights,Not Supplied,ASN,ESTIMATED,2026-11-02T03:00:00Z,2026-11-01T22:00:00-0500,2026-11-02T02:09:29Z,new,0,False,0,,12,2026_11_02_02_05_30,2026-11-02T02:05:00Z,2026-11-02T02:09:29Z
-coned,40.68538|-73.81801,1,40.68538,-73.81801,1,,Not Supplied,DSP,ESTIMATED,2026-11-02T04:30:00Z,2026-11-01T23:30:00-0500,2026-11-02T02:09:29Z,new,0,False,0,,12,2026_11_02_02_05_30,2026-11-02T02:05:00Z,2026-11-02T02:09:29Z
