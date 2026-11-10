@@ -1,1 +1,6 @@
 utility,synthetic_id_location,publish_id_UNSTABLE,latitude,longitude,customers_out,reported_problem,cause,crew_status_code,etr_status,etr_utc,etr_raw,first_seen_utc,first_seen_method,minutes_since_first_seen,has_polygon,polygon_vertices,polygon_json,found_at_zoom,directory,publish_utc,retrieved_utc
+coned,40.67613|-73.88467,4,40.67613,-73.88467,3,No Lights,Not Supplied,NEW,ETR-NULL,,ETR-NULL,2026-11-10T01:43:33Z,new,0,False,0,,12,2026_11_10_01_35_30,2026-11-10T01:35:00Z,2026-11-10T01:43:33Z
+coned,40.92799|-73.89967,2,40.92799,-73.89967,1,No Lights,Not Supplied,NEW,ETR-NULL,,ETR-NULL,2026-11-10T01:43:33Z,new,0,False,0,,12,2026_11_10_01_35_30,2026-11-10T01:35:00Z,2026-11-10T01:43:33Z
+coned,40.63932|-73.89587,1,40.63932,-73.89587,1,No Lights,Not Supplied,NEW,ETR-NULL,,ETR-NULL,2026-11-10T01:43:33Z,new,0,False,0,,12,2026_11_10_01_35_30,2026-11-10T01:35:00Z,2026-11-10T01:43:33Z
+coned,40.64632|-73.90770,3,40.64632,-73.9077,1,No Lights,Not Supplied,NEW,ETR-NULL,,ETR-NULL,2026-11-10T01:43:33Z,new,0,False,0,,12,2026_11_10_01_35_30,2026-11-10T01:35:00Z,2026-11-10T01:43:33Z
+coned,40.66958|-73.77539,5,40.66958,-73.77539,1,Partial Outage,Not Supplied,NEW,ETR-NULL,,ETR-NULL,2026-11-10T01:43:33Z,new,0,False,0,,12,2026_11_10_01_35_30,2026-11-10T01:35:00Z,2026-11-10T01:43:33Z
